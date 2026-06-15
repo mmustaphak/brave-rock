@@ -1,7 +1,16 @@
 import { HiOutlineUserCircle } from "react-icons/hi";
-import { Link, NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet, redirect, useNavigate } from "react-router";
+import { supabase } from "~/supabase";
 
+export async function clientLoader() {
+  const { data, error } = await supabase.auth.getUser();
+  console.log(error?.message);
+  if (!data.user) {
+    return redirect("/signin");
+  }
+}
 export default function Home() {
+  let navigate = useNavigate();
   return (
     <>
       <header>
