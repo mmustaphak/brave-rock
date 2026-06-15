@@ -12,9 +12,11 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     string
   >;
   const { data, error } = await supabase.auth.signUp({ email, password });
-  if (error) console.error(error);
-  console.log(data);
-  return;
+  if (error) {
+    console.error(error);
+    return { errorMessage: "Failed to Create user" };
+  }
+  return redirect("/");
 }
 
 export default function SignUp() {
@@ -104,7 +106,7 @@ export default function SignUp() {
         <hr className="mt-6" />
         <p className="text-center mt-4">
           Already have an account?{" "}
-          <Link to="/" className="font-semibold">
+          <Link to="/signin" className="font-semibold">
             Sign In
           </Link>
         </p>
