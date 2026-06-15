@@ -1,5 +1,7 @@
 import { MdOutlineStadium } from "react-icons/md";
 import logo from "../images/logo.png";
+import stadium from "../images/stadium.svg";
+import bolt from "../images/bolt.svg";
 import backgroundImage from "../images/landing-page-background.jpg";
 import { HiOutlineBolt } from "react-icons/hi2";
 import { Form, Link } from "react-router";
@@ -14,24 +16,24 @@ function Login() {
       >
         <div>
           <img src={logo} />
-          <p className="uppercase text-5xl mt-4">
+          <p className="uppercase text-5xl font-extrabold mt-4">
             Take your
             <br /> game to
             <br /> the next level
           </p>
         </div>
         <div>
-          <div className="flex items-center">
-            <MdOutlineStadium />
-            <div>
-              <p>Elite Facilities</p>
+          <div className="flex items-center text-xs">
+            <img src={stadium} className="size-8" alt="" />
+            <div className="ml-4">
+              <p className="font-extrabold">Elite Facilities</p>
               <p>Enjoy access to top-quality approved football pitches across Gombe</p>
             </div>
           </div>
-          <div className="flex items-center">
-            <HiOutlineBolt />
-            <div>
-              <p>Instant Booking</p>
+          <div className="flex mt-4 items-center text-xs">
+            <img src={bolt} className="size-8" alt="" />
+            <div className="ml-4">
+              <p className="font-extrabold">Instant Booking</p>
               <p>Secure your slot in seconds with real-time availability.</p>
             </div>
           </div>
@@ -48,7 +50,12 @@ function Login() {
             placeholder="coach@pitchvelocity.com"
             className="mt-2 py-2 px-4 border rounded-full broder-[#BCCBB9] placeholder:text-[#6B7280] w-full"
           />
-          <label className="mt-4 block">Password</label>
+          <div className="mt-4 flex">
+            <label>Password</label>
+            <Link to="/reset" className="font-semibold inline-block ml-auto">
+              Forgot Password?
+            </Link>
+          </div>
           <input
             type="password"
             placeholder="••••••••"
