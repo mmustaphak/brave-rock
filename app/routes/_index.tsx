@@ -1,12 +1,24 @@
-import { MdOutlineStadium } from "react-icons/md";
-import logo from "../images/logo.png";
-import stadium from "../images/stadium.svg";
+import { FaApple } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { Form, Link, redirect } from "react-router";
 import bolt from "../images/bolt.svg";
 import backgroundImage from "../images/landing-page-background.jpg";
-import { HiOutlineBolt } from "react-icons/hi2";
-import { Form, Link } from "react-router";
-import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+import logo from "../images/logo.png";
+import stadium from "../images/stadium.svg";
+import type { Route } from "./+types/_index";
+import { supabase } from "~/supabase";
+export async function clientAction({ request }: Route.ClientActionArgs) {
+  const { email, password } = Object.fromEntries(await request.formData()) as Record<
+    string,
+    string
+  >;
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) throw error;
+  if (data) {
+    console.log(data, error);
+    return redirect("/main");
+  }
+}
 function Login() {
   return (
     <div className="flex h-screen text-white">
@@ -42,10 +54,11 @@ function Login() {
       <div className="px-16 py-8 container text-foreground flex flex-col justify-center">
         <p className="font-bold text-4xl">Welcome Back</p>
         <p className="text-muted-foreground mt-2">Sign in to manage your booking and team.</p>
-        <Form className="mt-8">
+        <Form method="POST" className="mt-8">
           <label>Email Address</label>
           <br />
           <input
+            name="email"
             type="email"
             placeholder="coach@pitchvelocity.com"
             className="mt-2 py-2 px-4 border rounded-full broder-[#BCCBB9] placeholder:text-[#6B7280] w-full"
@@ -57,6 +70,7 @@ function Login() {
             </Link>
           </div>
           <input
+            name="password"
             type="password"
             placeholder="••••••••"
             className="mt-2 py-2 px-4 border rounded-full broder-[#BCCBB9] placeholder:text-[#6B7280] w-full"
