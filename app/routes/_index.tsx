@@ -13,6 +13,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     string
   >;
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  console.log(data, error);
   if (error) throw error;
   if (data) {
     console.log(data, error);
@@ -54,7 +55,7 @@ function Login() {
       <div className="px-16 py-8 container text-foreground flex flex-col justify-center">
         <p className="font-bold text-4xl">Welcome Back</p>
         <p className="text-muted-foreground mt-2">Sign in to manage your booking and team.</p>
-        <Form method="POST" className="mt-8">
+        <Form method="POST" className="mt-8 text-sm">
           <label>Email Address</label>
           <br />
           <input
@@ -103,7 +104,7 @@ function Login() {
           </button>
         </div>
         <p className="text-center mt-4">
-          Don't have an account? <Link to="register">Create account</Link>
+          Don't have an account? <Link to="signup">Create account</Link>
         </p>
       </div>
     </div>

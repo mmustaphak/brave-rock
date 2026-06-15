@@ -16,7 +16,7 @@
 
 @layer components{
   .btn{
-    @apply py-3 w-full rounded-full;
+    @apply py-3 w-full rounded-2xl;
   }
   .btn-primary{
     @apply text-white bg-[#006E2F];
@@ -33,4 +33,7 @@ body {
 }
 a {
   @apply text-[#006E2F]
+}
+hr{
+  @apply border-t border-[#BCCBB9]
 }
