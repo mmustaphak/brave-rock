@@ -14,7 +14,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   >;
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   console.log(data, error);
-  if (error) throw error;
+  if (error) console.error(error.message);
   if (data) {
     console.log(data, error);
     return redirect("/");
