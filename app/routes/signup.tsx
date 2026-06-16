@@ -1,10 +1,18 @@
-import { Form, Link, redirect } from "react-router";
+import { Form, Link, redirect, replace } from "react-router";
 import { supabase } from "~/supabase";
 import bolt from "../images/bolt-signup.svg";
 import backgroundImage from "../images/signup-background.jpg";
 import logo from "../images/logo.png";
 import timer from "../images/timer.svg";
 import type { Route } from "./+types/_index";
+
+export async function clientLoader() {
+  const { data, error } = await supabase.auth.getUser();
+  console.log(error?.message);
+  if (data.user) {
+    return replace("/");
+  }
+}
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   const { email, password } = Object.fromEntries(await request.formData()) as Record<
@@ -16,7 +24,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     console.error(error);
     return { errorMessage: "Failed to Create user" };
   }
-  return redirect("/");
+  return data.user && redirect("/");
 }
 
 export default function SignUp() {

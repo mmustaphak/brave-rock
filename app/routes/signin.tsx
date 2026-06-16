@@ -1,12 +1,21 @@
 import { FaApple } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Form, Link, redirect } from "react-router";
+import { Form, Link, redirect, replace } from "react-router";
+import { supabase } from "~/supabase";
 import bolt from "../images/bolt.svg";
 import backgroundImage from "../images/landing-page-background.jpg";
 import logo from "../images/logo.png";
 import stadium from "../images/stadium.svg";
 import type { Route } from "./+types/_index";
-import { supabase } from "~/supabase";
+
+export async function clientLoader() {
+  const { data, error } = await supabase.auth.getUser();
+  console.log(error?.message);
+  if (data.user) {
+    return replace("/");
+  }
+}
+
 export async function clientAction({ request }: Route.ClientActionArgs) {
   const { email, password } = Object.fromEntries(await request.formData()) as Record<
     string,
