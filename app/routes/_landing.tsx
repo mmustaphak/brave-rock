@@ -31,7 +31,7 @@ export default function Home() {
   ));
   return (
     <>
-      <header className="flex justify-between items-center px-6">
+      <header className="bg-primary flex justify-between items-center px-6">
         <Link to={"/"}>
           <img src={logo} />
         </Link>
@@ -41,7 +41,7 @@ export default function Home() {
 
       <Outlet />
 
-      <footer className="text-muted-foreground font-medium">
+      <footer className="bg-secondary text-muted-foreground font-medium">
         <div className="flex container flex-wrap gap-x-40 w-full items-center px-6 py-12">
           <div>
             <Link to={"/"}>
