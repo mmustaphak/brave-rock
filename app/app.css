@@ -4,6 +4,7 @@
 :root{
   --foreground: #191C1E;
   --muted-foreground: #3D4A3D;
+  --green: #006E2F;
   --grey: #6D7B6C;
 }
 
@@ -11,6 +12,7 @@
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-grey: var(--grey);
+  --color-green: var(--green);
   --font-sans: "Montserrat", "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -19,7 +21,7 @@
     @apply py-3 w-full rounded-2xl;
   }
   .btn-primary{
-    @apply text-white bg-[#006E2F];
+    @apply text-white bg-green;
   }
 }
 
@@ -32,8 +34,8 @@ body {
   /* } */
 }
 a {
-  @apply text-[#006E2F]
+  @apply text-green;
 }
 hr{
-  @apply border-t border-[#BCCBB9]
+  @apply border-t border-[#BCCBB9];
 }
